@@ -27,26 +27,25 @@
 
         ClearForm(ClearMode.Full)
         dgvDetails.RowTemplate.MinimumHeight = 15
-
     End Sub
-	
-	'Output messages to the user using the bottom OutputMessage label.
-	Private Sub OutputMessageToUser(msg as String, Optional oType As OutputType = 0)	
-		Dim c as Color
-		Select Case oType
-			Case OutputType.Success:
-				c = Color.DarkGreen
-			Case OutputType.Failure:
-				c = Color.DarkRed
-			Case OutputType.Alert:
-				c = Color.DarkRed
-			Case Else:
-				c = Color.Black
-		End Select
-		
-		lblOutputMessage.Text = msg
+
+    'Output messages to the user using the bottom OutputMessage label.
+    Private Sub OutputMessageToUser(Optional msg As String = "", Optional oType As OutputType = 0)
+        Dim c As Color
+        Select Case oType
+            Case OutputType.Success
+                c = Color.DarkGreen
+            Case OutputType.Failure
+                c = Color.DarkRed
+            Case OutputType.Alert
+                c = Color.DarkOrange
+            Case Else
+                c = Color.Black
+        End Select
+
+        lblOutputMessage.Text = msg
         lblOutputMessage.ForeColor = c
-	End Sub
+    End Sub
 
     Private Sub PopulateListboxes()
         DB_Connection.Populate_Datatable(myDerpDataSet, "dtblCategories", "Select * FROM tblCATEGORIES WHERE IS_HIDDEN = 0 Order By CATEGORY_NAME;", mySettings.GetConnectionString)
@@ -64,34 +63,41 @@
         DB_Connection.Populate_Datatable(myDerpDataSet, "dtblDetailRelations", "Select * FROM tblDetailRelations;", mySettings.GetConnectionString)
 
     End Sub
-	
-	Private Sub FillFormWithContactInfo()
-		If (System.Windows.Forms.Clipboard.ContainsText) Then
+
+    Private Sub FillFormWithContactInfo()
+        If (System.Windows.Forms.Clipboard.ContainsText) Then
             Dim contact As New Contact(System.Windows.Forms.Clipboard.GetText)
             If contact.Valid Then
+                Dim contactSrc As String
+                ResetAccountCustsomerFields()
                 Me.txtAccountNumber.Text = contact.AccountNumber
                 Me.txtAgent.Text = contact.Agent
                 Me.txtAgentID.Text = contact.AgentID
-                Me.txtDate.Text = contact.DateOccurred
+                Me.dtpErrorDate.Value = contact.DateOccurred
+                Me.dtpErrorDate.Checked = True
                 Me.cmbCompany.SelectedValue = contact.Company
-				
-				If contact.Source = ContactSource.CS_ACCOUNT Then
-					ValidateTxtControl(Me.txtAccountNumber)
-				Else
-                    Me.txtCustomerNumber.Focus()
+
+                If contact.Source = ContactSource.CS_ACCOUNT Then
+                    ValidateTxtControl(Me.txtAccountNumber)
+                    contactSrc = "Account"
+                Else
+                    contactSrc = "Customer"
+                    If Not ValidateTxtControl(Me.txtCustomerNumber) Then Me.txtCustomerNumber.Focus()
                 End If
-				
-				OutputMessageToUser("Contact successfully filled", OutputType.Success)	
+
+                OutputMessageToUser(contactSrc & " contact successfully filled", OutputType.Success)
             Else
-				OutputMessageToUser("Contact parsing error: Please try again.", OutputType.Alert)	
+                OutputMessageToUser("Contact parsing error: Please try again.", OutputType.Alert)
             End If
-
+        Else
+            OutputMessageToUser("Contact parsing error: Please try again.", OutputType.Alert)
         End If
-	End Sub
+
+    End Sub
 
 
-	Private Sub UpdateFunctionsList()
-		If Not IsNothing(lbCategories.SelectedValue) AndAlso lbCategories.SelectedValue.GetType = GetType(Integer) Then
+    Private Sub UpdateFunctionsList()
+        If Not IsNothing(lbCategories.SelectedValue) AndAlso lbCategories.SelectedValue.GetType = GetType(Integer) Then
             Dim selc As Integer = lbCategories.SelectedValue
             Dim query =
                 From task In myDerpDataSet.Tables("dtblFunctions")
@@ -110,9 +116,9 @@
             End If
         End If
         dgvDetails.DataSource = Nothing
-	End Sub
-	
-	Private Sub UpdateDetailsList()
+    End Sub
+
+    Private Sub UpdateDetailsList()
         If Not IsNothing(lbTasks.SelectedValue) AndAlso lbTasks.SelectedValue.GetType = GetType(Integer) Then
             Dim selc As Integer = lbTasks.SelectedValue
             Dim query =
@@ -139,16 +145,21 @@
 
         Me.txtAccountNumber.Text = vbNullString
         Me.txtCustomerNumber.Text = vbNullString
-        Me.txtDate.Text = vbNullString
-        Me.cmbCompany.SelectedItem = -1
+
+        ResetAccountCustsomerFields()
+
+        Me.dtpErrorDate.MaxDate = DateAdd("d", 1, Date.Now)
+        Me.dtpErrorDate.Value = Date.Now()
+        Me.dtpErrorDate.Checked = False
+        Me.cmbCompany.SelectedValue = 1
         Me.txtAgent.Text = vbNullString
         Me.txtAgentID.Text = vbNullString
 
         Me.txtComments.Text = vbNullString
-		UpdateDetailsList()
+        UpdateDetailsList()
 
         If cMode = ClearMode.Full Then
-			Me.lblOutputMessage.Text = vbNullString
+            OutputMessageToUser()
             Me.dgvDetails.DataSource = Nothing
 
             Me.lbTasks.ClearSelected()
@@ -169,19 +180,14 @@
             fback.Agent = Me.txtAgent.Text
             fback.Agent_ID = Me.txtAgentID.Text
             fback.Company = Me.cmbCompany.SelectedValue
-            fback.ErrorDate =  "#" & Me.txtDate.Text & "#"
+            fback.ErrorDate = "#" & Me.dtpErrorDate.Value.ToString & "#"
 
             fback.F_Category = Me.lbCategories.SelectedValue
             fback.F_Function = Me.lbTasks.SelectedValue
 
             fback.F_ERROR = Me.dgvDetails.Rows.Cast(Of DataGridViewRow).Where(Function(r) r.Cells(0).Value = -1).Select(Of Int16)(Function(r) r.Cells("ERROR_ID").Value).ToArray
 
-            'Dim i As Integer = 0
-            'Dim selectedDetails = From item As DataRow In lbErrors.Items Where item.Select item
-            'For Each item As Object In selectedDetails
-            ' fback.F_ERROR(i) = item.text
-            'i += 1
-            'Next
+
 
             Dim signal As Boolean = DB_Connection.Insert_NewRecord(fback, mySettings.GetConnectionString)
 
@@ -192,25 +198,32 @@
 				OutputMessageToUser("An error has occurred. Feedback was not sent.", OutputType.Failure)
             End If
         Else
-			OutputMessageToUser("An error has occurred. Feedback was not sent.", OutputType.Failure)
+            OutputMessageToUser("Required information is missing.", OutputType.Alert)
         End If
 	End Sub
-	
-	Private Function ValidateForm() As Boolean
-		Dim txtsToTest() As Object = {Me.txtDate}
-		'{Me.txtAccountNumber, Me.txtCustomerNumber}
+
+    Private Function ValidateForm() As Boolean
+        Dim txtsToTest() As Object = {}
+        '{Me.txtAccountNumber, Me.txtCustomerNumber}
         Dim listsToTest() As Object = {Me.cmbCompany, Me.lbCategories, Me.lbTasks}
         Dim selectedDetails As List(Of Int16) = Me.dgvDetails.Rows.Cast(Of DataGridViewRow).Where(Function(r) r.Cells(0).Value = -1).Select(Of Int16)(Function(r) r.Cells("ERROR_ID").Value).ToList
 
-        Return ValidateTextboxes(txtsToTest) And ValidateListboxes(listsToTest) And (selectedDetails.Count() > 0)
+        Dim bAccount = ValidateTxtControl(Me.txtAccountNumber) OrElse ValidateTxtControl(Me.txtCustomerNumber)
+        If (bAccount) Then ResetAccountCustsomerFields()
+        Return ValidateTextboxes(txtsToTest) And ValidateListboxes(listsToTest) And (selectedDetails.Count() > 0) And bAccount
     End Function
-	
-	
 
-'UI Interactions
+    Private Sub ResetAccountCustsomerFields()
+        Me.txtAccountNumber.BackColor = SystemColors.Window
+        Me.txtCustomerNumber.BackColor = SystemColors.Window
+    End Sub
 
-	'Listbox Selections
-	Private Sub lbCategories_SelectedValueChanged(sender As Object, e As EventArgs) Handles lbCategories.SelectedValueChanged
+
+
+    'UI Interactions
+
+    'Listbox Selections
+    Private Sub lbCategories_SelectedValueChanged(sender As Object, e As EventArgs) Handles lbCategories.SelectedValueChanged
 		UpdateFunctionsList
     End Sub
 	Private Sub lbTasks_SelectedValueChanged(sender As Object, e As EventArgs) Handles lbTasks.SelectedValueChanged

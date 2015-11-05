@@ -46,7 +46,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>resources\logo.ico</ApplicationIcon>
+    <ApplicationIcon>resources\DERP_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -155,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\Nini.dll" />
+    <None Include="resources\DERP_icon.ico" />
+    <None Include="resources\DERP_logo.png" />
+    <None Include="resources\DERP_half.png" />
     <Content Include="resources\logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Main
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Main
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
@@ -37,7 +37,6 @@ Partial Class Main
         Me.btnClear = New System.Windows.Forms.Button()
         Me.txtCustomerNumber = New System.Windows.Forms.TextBox()
         Me.txtAccountNumber = New System.Windows.Forms.MaskedTextBox()
-        Me.lblOutputMessage = New System.Windows.Forms.Label()
         Me.lblAccount = New System.Windows.Forms.Label()
         Me.lblCategory = New System.Windows.Forms.Label()
         Me.lblTask = New System.Windows.Forms.Label()
@@ -46,8 +45,8 @@ Partial Class Main
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.lblDate = New System.Windows.Forms.Label()
-        Me.txtDate = New System.Windows.Forms.MaskedTextBox()
         Me.cmbCompany = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtAgentID = New System.Windows.Forms.TextBox()
@@ -60,7 +59,9 @@ Partial Class Main
         Me.lblDetails = New System.Windows.Forms.Label()
         Me.dgvDetails = New System.Windows.Forms.DataGridView()
         Me.USER_CHECKED = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.dtpErrorDate = New System.Windows.Forms.DateTimePicker()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.lblOutputMessage = New System.Windows.Forms.ToolStripStatusLabel()
         CType(Me.myDerpDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtblCategories, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtblFunctions, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,6 +71,7 @@ Partial Class Main
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvDetails, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lbCategories
@@ -77,9 +79,8 @@ Partial Class Main
         Me.lbCategories.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbCategories.FormattingEnabled = True
         Me.lbCategories.Location = New System.Drawing.Point(11, 44)
-        Me.lbCategories.MultiColumn = True
         Me.lbCategories.Name = "lbCategories"
-        Me.lbCategories.Size = New System.Drawing.Size(134, 69)
+        Me.lbCategories.Size = New System.Drawing.Size(134, 43)
         Me.lbCategories.Sorted = True
         Me.lbCategories.TabIndex = 1
         '
@@ -114,43 +115,44 @@ Partial Class Main
         Me.lbTasks.FormattingEnabled = True
         Me.lbTasks.Location = New System.Drawing.Point(151, 44)
         Me.lbTasks.Name = "lbTasks"
-        Me.lbTasks.Size = New System.Drawing.Size(196, 69)
+        Me.lbTasks.Size = New System.Drawing.Size(196, 43)
         Me.lbTasks.TabIndex = 2
         '
         'btnFillForm
         '
         Me.btnFillForm.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFillForm.ForeColor = System.Drawing.SystemColors.HotTrack
-        Me.btnFillForm.Location = New System.Drawing.Point(290, 268)
+        Me.btnFillForm.Location = New System.Drawing.Point(57, 281)
         Me.btnFillForm.Name = "btnFillForm"
         Me.btnFillForm.Size = New System.Drawing.Size(46, 23)
         Me.btnFillForm.TabIndex = 4
+        Me.btnFillForm.TabStop = False
         Me.btnFillForm.Text = "Fill"
         Me.btnFillForm.UseVisualStyleBackColor = True
         '
         'btnSend
         '
         Me.btnSend.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSend.Location = New System.Drawing.Point(70, 389)
+        Me.btnSend.Location = New System.Drawing.Point(144, 405)
         Me.btnSend.Name = "btnSend"
-        Me.btnSend.Size = New System.Drawing.Size(71, 32)
-        Me.btnSend.TabIndex = 18
-        Me.btnSend.Text = "Send"
+        Me.btnSend.Size = New System.Drawing.Size(71, 31)
+        Me.btnSend.TabIndex = 19
+        Me.btnSend.Text = "Submit"
         Me.btnSend.UseVisualStyleBackColor = True
         '
         'btnClear
         '
-        Me.btnClear.Location = New System.Drawing.Point(237, 398)
+        Me.btnClear.Location = New System.Drawing.Point(296, 410)
         Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(75, 23)
-        Me.btnClear.TabIndex = 19
+        Me.btnClear.Size = New System.Drawing.Size(43, 23)
+        Me.btnClear.TabIndex = 99
         Me.btnClear.Text = "Clear"
         Me.btnClear.UseVisualStyleBackColor = True
         '
         'txtCustomerNumber
         '
         Me.txtCustomerNumber.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCustomerNumber.Location = New System.Drawing.Point(68, 264)
+        Me.txtCustomerNumber.Location = New System.Drawing.Point(70, 237)
         Me.txtCustomerNumber.MaxLength = 9
         Me.txtCustomerNumber.Name = "txtCustomerNumber"
         Me.txtCustomerNumber.Size = New System.Drawing.Size(74, 21)
@@ -160,31 +162,17 @@ Partial Class Main
         '
         Me.txtAccountNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtAccountNumber.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAccountNumber.Location = New System.Drawing.Point(68, 242)
+        Me.txtAccountNumber.Location = New System.Drawing.Point(70, 215)
         Me.txtAccountNumber.Mask = "00000-99999"
         Me.txtAccountNumber.Name = "txtAccountNumber"
         Me.txtAccountNumber.Size = New System.Drawing.Size(74, 21)
         Me.txtAccountNumber.TabIndex = 5
         Me.txtAccountNumber.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
-        'lblOutputMessage
-        '
-        Me.lblOutputMessage.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblOutputMessage.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.lblOutputMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lblOutputMessage.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOutputMessage.Location = New System.Drawing.Point(0, 433)
-        Me.lblOutputMessage.Name = "lblOutputMessage"
-        Me.lblOutputMessage.Size = New System.Drawing.Size(357, 21)
-        Me.lblOutputMessage.TabIndex = 10
-        Me.lblOutputMessage.Text = "Your feedback was successfully submitted"
-        Me.lblOutputMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'lblAccount
         '
         Me.lblAccount.AutoSize = True
-        Me.lblAccount.Location = New System.Drawing.Point(4, 248)
+        Me.lblAccount.Location = New System.Drawing.Point(6, 218)
         Me.lblAccount.Name = "lblAccount"
         Me.lblAccount.Size = New System.Drawing.Size(60, 13)
         Me.lblAccount.TabIndex = 4
@@ -213,7 +201,7 @@ Partial Class Main
         'lblCustomer
         '
         Me.lblCustomer.AutoSize = True
-        Me.lblCustomer.Location = New System.Drawing.Point(4, 269)
+        Me.lblCustomer.Location = New System.Drawing.Point(6, 240)
         Me.lblCustomer.Name = "lblCustomer"
         Me.lblCustomer.Size = New System.Drawing.Size(64, 13)
         Me.lblCustomer.TabIndex = 6
@@ -221,10 +209,12 @@ Partial Class Main
         '
         'MenuStrip1
         '
+        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(358, 24)
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(6, 1, 0, 1)
+        Me.MenuStrip1.Size = New System.Drawing.Size(359, 24)
         Me.MenuStrip1.TabIndex = 14
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -232,7 +222,7 @@ Partial Class Main
         '
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QuitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 22)
         Me.FileToolStripMenuItem.Text = "&File"
         '
         'QuitToolStripMenuItem
@@ -245,37 +235,34 @@ Partial Class Main
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 22)
         Me.HelpToolStripMenuItem.Text = "&Help"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Text = "&About"
         '
         'lblDate
         '
         Me.lblDate.AutoSize = True
-        Me.lblDate.Location = New System.Drawing.Point(166, 245)
+        Me.lblDate.Location = New System.Drawing.Point(185, 218)
         Me.lblDate.Name = "lblDate"
-        Me.lblDate.Size = New System.Drawing.Size(33, 13)
-        Me.lblDate.TabIndex = 15
-        Me.lblDate.Text = "Date:"
-        '
-        'txtDate
-        '
-        Me.txtDate.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDate.Location = New System.Drawing.Point(205, 241)
-        Me.txtDate.Mask = "00/00/00"
-        Me.txtDate.Name = "txtDate"
-        Me.txtDate.Size = New System.Drawing.Size(65, 21)
-        Me.txtDate.TabIndex = 16
-        Me.txtDate.ValidatingType = GetType(Date)
+        Me.lblDate.Size = New System.Drawing.Size(58, 13)
+        Me.lblDate.TabIndex = 8
+        Me.lblDate.Text = "Error Date:"
         '
         'cmbCompany
         '
         Me.cmbCompany.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbCompany.FormattingEnabled = True
+        Me.cmbCompany.ItemHeight = 13
         Me.cmbCompany.Location = New System.Drawing.Point(70, 19)
         Me.cmbCompany.Name = "cmbCompany"
         Me.cmbCompany.Size = New System.Drawing.Size(75, 21)
         Me.cmbCompany.Sorted = True
-        Me.cmbCompany.TabIndex = 10
+        Me.cmbCompany.TabIndex = 12
         '
         'GroupBox1
         '
@@ -285,21 +272,21 @@ Partial Class Main
         Me.GroupBox1.Controls.Add(Me.lblAgent)
         Me.GroupBox1.Controls.Add(Me.lblCompany)
         Me.GroupBox1.Controls.Add(Me.cmbCompany)
-        Me.GroupBox1.Location = New System.Drawing.Point(0, 289)
+        Me.GroupBox1.Location = New System.Drawing.Point(175, 246)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(189, 94)
-        Me.GroupBox1.TabIndex = 8
+        Me.GroupBox1.Size = New System.Drawing.Size(172, 94)
+        Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Erroronous Agent"
         '
         'txtAgentID
         '
         Me.txtAgentID.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAgentID.Location = New System.Drawing.Point(64, 63)
+        Me.txtAgentID.Location = New System.Drawing.Point(64, 64)
         Me.txtAgentID.MaxLength = 30
         Me.txtAgentID.Name = "txtAgentID"
         Me.txtAgentID.Size = New System.Drawing.Size(100, 21)
-        Me.txtAgentID.TabIndex = 14
+        Me.txtAgentID.TabIndex = 16
         '
         'txtAgent
         '
@@ -308,7 +295,7 @@ Partial Class Main
         Me.txtAgent.MaxLength = 50
         Me.txtAgent.Name = "txtAgent"
         Me.txtAgent.Size = New System.Drawing.Size(100, 21)
-        Me.txtAgent.TabIndex = 12
+        Me.txtAgent.TabIndex = 14
         '
         'Label2
         '
@@ -316,7 +303,7 @@ Partial Class Main
         Me.Label2.Location = New System.Drawing.Point(8, 66)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 13)
-        Me.Label2.TabIndex = 13
+        Me.Label2.TabIndex = 15
         Me.Label2.Text = "Agent ID:"
         '
         'lblAgent
@@ -325,7 +312,7 @@ Partial Class Main
         Me.lblAgent.Location = New System.Drawing.Point(8, 45)
         Me.lblAgent.Name = "lblAgent"
         Me.lblAgent.Size = New System.Drawing.Size(38, 13)
-        Me.lblAgent.TabIndex = 11
+        Me.lblAgent.TabIndex = 13
         Me.lblAgent.Text = "Agent:"
         '
         'lblCompany
@@ -334,33 +321,33 @@ Partial Class Main
         Me.lblCompany.Location = New System.Drawing.Point(7, 22)
         Me.lblCompany.Name = "lblCompany"
         Me.lblCompany.Size = New System.Drawing.Size(54, 13)
-        Me.lblCompany.TabIndex = 9
+        Me.lblCompany.TabIndex = 11
         Me.lblCompany.Text = "Company:"
         '
         'txtComments
         '
         Me.txtComments.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtComments.Location = New System.Drawing.Point(195, 303)
+        Me.txtComments.Location = New System.Drawing.Point(12, 346)
         Me.txtComments.MaxLength = 255
         Me.txtComments.Multiline = True
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(152, 80)
-        Me.txtComments.TabIndex = 17
+        Me.txtComments.Size = New System.Drawing.Size(335, 50)
+        Me.txtComments.TabIndex = 18
         '
         'lblComments
         '
         Me.lblComments.AutoSize = True
-        Me.lblComments.Location = New System.Drawing.Point(196, 289)
+        Me.lblComments.Location = New System.Drawing.Point(13, 331)
         Me.lblComments.Name = "lblComments"
         Me.lblComments.Size = New System.Drawing.Size(59, 13)
-        Me.lblComments.TabIndex = 20
+        Me.lblComments.TabIndex = 17
         Me.lblComments.Text = "Comments:"
         '
         'lblDetails
         '
         Me.lblDetails.AutoSize = True
         Me.lblDetails.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDetails.Location = New System.Drawing.Point(13, 115)
+        Me.lblDetails.Location = New System.Drawing.Point(13, 91)
         Me.lblDetails.Name = "lblDetails"
         Me.lblDetails.Size = New System.Drawing.Size(46, 13)
         Me.lblDetails.TabIndex = 21
@@ -378,7 +365,7 @@ Partial Class Main
         Me.dgvDetails.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.USER_CHECKED})
         Me.dgvDetails.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke
         Me.dgvDetails.EnableHeadersVisualStyles = False
-        Me.dgvDetails.Location = New System.Drawing.Point(12, 129)
+        Me.dgvDetails.Location = New System.Drawing.Point(12, 105)
         Me.dgvDetails.MultiSelect = False
         Me.dgvDetails.Name = "dgvDetails"
         Me.dgvDetails.RowHeadersVisible = False
@@ -389,7 +376,7 @@ Partial Class Main
         Me.dgvDetails.ShowEditingIcon = False
         Me.dgvDetails.ShowRowErrors = False
         Me.dgvDetails.Size = New System.Drawing.Size(335, 104)
-        Me.dgvDetails.TabIndex = 22
+        Me.dgvDetails.TabIndex = 3
         '
         'USER_CHECKED
         '
@@ -399,37 +386,67 @@ Partial Class Main
         Me.USER_CHECKED.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.USER_CHECKED.Width = 25
         '
-        'AboutToolStripMenuItem
+        'dtpErrorDate
         '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.AboutToolStripMenuItem.Text = "&About"
+        Me.dtpErrorDate.CustomFormat = "MM/dd/yyyy"
+        Me.dtpErrorDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpErrorDate.Location = New System.Drawing.Point(246, 215)
+        Me.dtpErrorDate.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.dtpErrorDate.MaxDate = New Date(2015, 11, 26, 0, 0, 0, 0)
+        Me.dtpErrorDate.MinDate = New Date(1991, 10, 24, 0, 0, 0, 0)
+        Me.dtpErrorDate.Name = "dtpErrorDate"
+        Me.dtpErrorDate.ShowCheckBox = True
+        Me.dtpErrorDate.Size = New System.Drawing.Size(99, 20)
+        Me.dtpErrorDate.TabIndex = 9
+        Me.dtpErrorDate.Value = New Date(2015, 11, 4, 0, 0, 0, 0)
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblOutputMessage})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 445)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 11, 0)
+        Me.StatusStrip1.Size = New System.Drawing.Size(359, 22)
+        Me.StatusStrip1.SizingGrip = False
+        Me.StatusStrip1.TabIndex = 24
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'lblOutputMessage
+        '
+        Me.lblOutputMessage.AutoSize = False
+        Me.lblOutputMessage.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOutputMessage.Name = "lblOutputMessage"
+        Me.lblOutputMessage.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never
+        Me.lblOutputMessage.Size = New System.Drawing.Size(358, 17)
+        Me.lblOutputMessage.Text = "Your feedback was successfully submitted"
         '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(358, 456)
+        Me.ClientSize = New System.Drawing.Size(359, 467)
+        Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.dtpErrorDate)
         Me.Controls.Add(Me.dgvDetails)
         Me.Controls.Add(Me.lblDetails)
         Me.Controls.Add(Me.lblComments)
+        Me.Controls.Add(Me.btnFillForm)
         Me.Controls.Add(Me.txtComments)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.txtDate)
         Me.Controls.Add(Me.lblDate)
         Me.Controls.Add(Me.lblCustomer)
         Me.Controls.Add(Me.lblTask)
         Me.Controls.Add(Me.lblCategory)
         Me.Controls.Add(Me.lblAccount)
-        Me.Controls.Add(Me.lblOutputMessage)
         Me.Controls.Add(Me.txtAccountNumber)
         Me.Controls.Add(Me.txtCustomerNumber)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnSend)
-        Me.Controls.Add(Me.btnFillForm)
         Me.Controls.Add(Me.lbTasks)
         Me.Controls.Add(Me.lbCategories)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
@@ -446,6 +463,8 @@ Partial Class Main
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.dgvDetails, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -461,7 +480,6 @@ Partial Class Main
     Friend WithEvents dtblFunctions As DataTable
     Friend WithEvents dtblDetails As DataTable
     Friend WithEvents txtAccountNumber As MaskedTextBox
-    Friend WithEvents lblOutputMessage As Label
     Friend WithEvents dtblDetailRelations As DataTable
     Friend WithEvents lblAccount As Label
     Friend WithEvents lblCategory As Label
@@ -472,7 +490,6 @@ Partial Class Main
     Friend WithEvents QuitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents lblDate As Label
-    Friend WithEvents txtDate As MaskedTextBox
     Friend WithEvents cmbCompany As ComboBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents txtAgentID As TextBox
@@ -487,4 +504,7 @@ Partial Class Main
     Friend WithEvents dgvDetails As DataGridView
     Friend WithEvents USER_CHECKED As DataGridViewCheckBoxColumn
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents dtpErrorDate As DateTimePicker
+    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents lblOutputMessage As ToolStripStatusLabel
 End Class
