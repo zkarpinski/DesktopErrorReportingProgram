@@ -269,7 +269,33 @@
         If e.ColumnIndex > 0 Then
             dgvDetails.Item(0, e.RowIndex).Value = Not dgvDetails.Item(0, e.RowIndex).Value
         End If
-    End Sub	
-'END UI Interactions
+    End Sub
+
+    'Label Clicks
+
+    Private Sub lblCustomer_Click(sender As Object, e As EventArgs) Handles lblCustomer.Click
+        Me.txtCustomerNumber.Focus()
+    End Sub
+
+    Private Sub lblAccount_Click(sender As Object, e As EventArgs) Handles lblAccount.Click
+        Me.txtAccountNumber.Focus()
+    End Sub
+
+    Private Sub lblDate_Click(sender As Object, e As EventArgs) Handles lblDate.Click
+        Me.lblDate.Focus()
+    End Sub
+
+    Private Sub lblCompany_Click(sender As Object, e As EventArgs) Handles lblCompany.Click
+        Me.cmbCompany.Focus()
+    End Sub
+
+    Private Sub lblAgent_Click(sender As Object, e As EventArgs) Handles lblAgent.Click
+        Me.txtAgent.Focus()
+    End Sub
+
+    Private Sub lblAgentID_Click(sender As Object, e As EventArgs) Handles lblAgentID.Click
+        Me.txtAgentID.Focus()
+    End Sub
+    'END UI Interactions
 
 End Class

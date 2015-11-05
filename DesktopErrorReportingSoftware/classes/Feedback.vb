@@ -38,18 +38,18 @@
 		Comments = sComments
 
 
-        Rep = Environment.UserName 
-		
-		'Generate the feedback time stamp
+        Rep = Environment.UserName.ToUpper
+
+        'Generate the feedback time stamp
         Dim dDate As DateTime = Now()
         m_Timestamp = New DateTime(dDate.Year, dDate.Month, dDate.Day, dDate.Hour, dDate.Minute, dDate.Second)
 	End Sub
 	
     Public Sub New()
-	
-		Rep = Environment.UserName 
-		
-		'Generate the feedback time stamp
+
+        Rep = Environment.UserName.ToUpper
+
+        'Generate the feedback time stamp
         Dim dDate As DateTime = Now()
         m_Timestamp = New DateTime(dDate.Year, dDate.Month, dDate.Day, dDate.Hour, dDate.Minute, dDate.Second)
     End Sub

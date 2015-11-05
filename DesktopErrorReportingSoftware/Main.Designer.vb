@@ -35,7 +35,6 @@ Partial Class Main
         Me.btnFillForm = New System.Windows.Forms.Button()
         Me.btnSend = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
-        Me.txtCustomerNumber = New System.Windows.Forms.TextBox()
         Me.txtAccountNumber = New System.Windows.Forms.MaskedTextBox()
         Me.lblAccount = New System.Windows.Forms.Label()
         Me.lblCategory = New System.Windows.Forms.Label()
@@ -51,7 +50,7 @@ Partial Class Main
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtAgentID = New System.Windows.Forms.TextBox()
         Me.txtAgent = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblAgentID = New System.Windows.Forms.Label()
         Me.lblAgent = New System.Windows.Forms.Label()
         Me.lblCompany = New System.Windows.Forms.Label()
         Me.txtComments = New System.Windows.Forms.TextBox()
@@ -62,6 +61,7 @@ Partial Class Main
         Me.dtpErrorDate = New System.Windows.Forms.DateTimePicker()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblOutputMessage = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.txtCustomerNumber = New System.Windows.Forms.MaskedTextBox()
         CType(Me.myDerpDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtblCategories, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtblFunctions, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,19 +149,12 @@ Partial Class Main
         Me.btnClear.Text = "Clear"
         Me.btnClear.UseVisualStyleBackColor = True
         '
-        'txtCustomerNumber
-        '
-        Me.txtCustomerNumber.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCustomerNumber.Location = New System.Drawing.Point(70, 237)
-        Me.txtCustomerNumber.MaxLength = 9
-        Me.txtCustomerNumber.Name = "txtCustomerNumber"
-        Me.txtCustomerNumber.Size = New System.Drawing.Size(74, 21)
-        Me.txtCustomerNumber.TabIndex = 7
-        '
         'txtAccountNumber
         '
         Me.txtAccountNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtAccountNumber.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtAccountNumber.HidePromptOnLeave = True
+        Me.txtAccountNumber.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert
         Me.txtAccountNumber.Location = New System.Drawing.Point(70, 215)
         Me.txtAccountNumber.Mask = "00000-99999"
         Me.txtAccountNumber.Name = "txtAccountNumber"
@@ -176,7 +169,7 @@ Partial Class Main
         Me.lblAccount.Name = "lblAccount"
         Me.lblAccount.Size = New System.Drawing.Size(60, 13)
         Me.lblAccount.TabIndex = 4
-        Me.lblAccount.Text = "Account #:"
+        Me.lblAccount.Text = "&Account #:"
         '
         'lblCategory
         '
@@ -205,7 +198,7 @@ Partial Class Main
         Me.lblCustomer.Name = "lblCustomer"
         Me.lblCustomer.Size = New System.Drawing.Size(64, 13)
         Me.lblCustomer.TabIndex = 6
-        Me.lblCustomer.Text = "Customer #:"
+        Me.lblCustomer.Text = "&Customer #:"
         '
         'MenuStrip1
         '
@@ -268,7 +261,7 @@ Partial Class Main
         '
         Me.GroupBox1.Controls.Add(Me.txtAgentID)
         Me.GroupBox1.Controls.Add(Me.txtAgent)
-        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.lblAgentID)
         Me.GroupBox1.Controls.Add(Me.lblAgent)
         Me.GroupBox1.Controls.Add(Me.lblCompany)
         Me.GroupBox1.Controls.Add(Me.cmbCompany)
@@ -281,6 +274,7 @@ Partial Class Main
         '
         'txtAgentID
         '
+        Me.txtAgentID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtAgentID.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAgentID.Location = New System.Drawing.Point(64, 64)
         Me.txtAgentID.MaxLength = 30
@@ -290,6 +284,7 @@ Partial Class Main
         '
         'txtAgent
         '
+        Me.txtAgent.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtAgent.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAgent.Location = New System.Drawing.Point(64, 42)
         Me.txtAgent.MaxLength = 50
@@ -297,14 +292,14 @@ Partial Class Main
         Me.txtAgent.Size = New System.Drawing.Size(100, 21)
         Me.txtAgent.TabIndex = 14
         '
-        'Label2
+        'lblAgentID
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(8, 66)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(52, 13)
-        Me.Label2.TabIndex = 15
-        Me.Label2.Text = "Agent ID:"
+        Me.lblAgentID.AutoSize = True
+        Me.lblAgentID.Location = New System.Drawing.Point(8, 66)
+        Me.lblAgentID.Name = "lblAgentID"
+        Me.lblAgentID.Size = New System.Drawing.Size(52, 13)
+        Me.lblAgentID.TabIndex = 15
+        Me.lblAgentID.Text = "Agent ID:"
         '
         'lblAgent
         '
@@ -421,11 +416,25 @@ Partial Class Main
         Me.lblOutputMessage.Size = New System.Drawing.Size(358, 17)
         Me.lblOutputMessage.Text = "Your feedback was successfully submitted"
         '
+        'txtCustomerNumber
+        '
+        Me.txtCustomerNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtCustomerNumber.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCustomerNumber.HidePromptOnLeave = True
+        Me.txtCustomerNumber.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Insert
+        Me.txtCustomerNumber.Location = New System.Drawing.Point(70, 237)
+        Me.txtCustomerNumber.Mask = "000000000"
+        Me.txtCustomerNumber.Name = "txtCustomerNumber"
+        Me.txtCustomerNumber.Size = New System.Drawing.Size(74, 21)
+        Me.txtCustomerNumber.TabIndex = 7
+        Me.txtCustomerNumber.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(359, 467)
+        Me.Controls.Add(Me.txtCustomerNumber)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.dtpErrorDate)
         Me.Controls.Add(Me.dgvDetails)
@@ -440,7 +449,6 @@ Partial Class Main
         Me.Controls.Add(Me.lblCategory)
         Me.Controls.Add(Me.lblAccount)
         Me.Controls.Add(Me.txtAccountNumber)
-        Me.Controls.Add(Me.txtCustomerNumber)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnSend)
         Me.Controls.Add(Me.lbTasks)
@@ -474,7 +482,6 @@ Partial Class Main
     Friend WithEvents btnFillForm As Button
     Friend WithEvents btnSend As Button
     Friend WithEvents btnClear As Button
-    Friend WithEvents txtCustomerNumber As TextBox
     Friend WithEvents myDerpDataSet As DataSet
     Friend WithEvents dtblCategories As DataTable
     Friend WithEvents dtblFunctions As DataTable
@@ -494,7 +501,7 @@ Partial Class Main
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents txtAgentID As TextBox
     Friend WithEvents txtAgent As TextBox
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblAgentID As Label
     Friend WithEvents lblAgent As Label
     Friend WithEvents lblCompany As Label
     Friend WithEvents txtComments As TextBox
@@ -507,4 +514,5 @@ Partial Class Main
     Friend WithEvents dtpErrorDate As DateTimePicker
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents lblOutputMessage As ToolStripStatusLabel
+    Friend WithEvents txtCustomerNumber As MaskedTextBox
 End Class
