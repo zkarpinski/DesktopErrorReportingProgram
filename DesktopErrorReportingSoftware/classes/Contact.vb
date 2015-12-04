@@ -12,6 +12,8 @@ Public Enum Companies
     COMP_LICallCenter = 3
     COMP_IQOR = 4
     COMP_NCI = 5
+    COMP_COV = 6
+    COMP_NorthboroCallCenter = 7
 End Enum
 
 Public Class Contact
@@ -41,11 +43,11 @@ Public Class Contact
 
 
     Private Function CParseString() As Boolean
-	'Account: 10/24/15 {\t} General Collections Contact {\t} 123 APPPLE ST SYRACUSE NY 13219 {\t} JOHN DOE
-		'{\t} Syracu {\t} 99999999 {\t} 2015-10-24-09.12.07.572093 {\t} E09677 {\t} 123456700 {\t} 1,234,567,890 {\t}
-	
-	'Customer: 08/08/14 {\t} Contact Type {\t} JANE DOE {\t} {\t} 999999999 {\t} 2014-08-08-15.23.06.099340 {\t} NCIR99
-		
+        'Account: 10/24/15 {\t} General Collections Contact {\t} 123 APPPLE ST SYRACUSE NY 13219 {\t} JOHN DOE
+        '{\t} Syracu {\t} 99999999 {\t} 2015-10-24-09.12.07.572093 {\t} E09677 {\t} 123456700 {\t} 1,234,567,890 {\t}
+
+        'Customer: 08/08/14 {\t} Contact Type {\t} JANE DOE {\t} {\t} 999999999 {\t} 2014-08-08-15.23.06.099340 {\t} NCIR99
+
         Dim splits As String()
         If InStr(Me.OrignalContactString, Chr(9), vbTextCompare) Then
             splits = Split(OrignalContactString, Chr(9))
@@ -99,6 +101,12 @@ Public Class Contact
             ElseIf prefix = "IQO" Or prefix = "OQI" Then
                 'IQO00 or OQI000
                 company = Companies.COMP_IQOR
+            ElseIf prefix = "COV" Then
+                'COV099
+                company = Companies.COMP_COV
+            ElseIf prefix = "NBR" Then
+                'NBR099
+                company = Companies.COMP_NorthboroCallCenter
             Else
                 company = Companies.COMP_OTHER
             End If

@@ -3,6 +3,7 @@
     Public ReadOnly Property Rep As String
     Public Property AccountNumber As String
     Public Property CustomerNumber As String
+    Public Property ContactType As String
 
     Public Property Agent As String
     Public Property Agent_ID As String
@@ -37,7 +38,7 @@
 		
 		Comments = sComments
 
-
+        'Store the Rep
         Rep = Environment.UserName.ToUpper
 
         'Generate the feedback time stamp

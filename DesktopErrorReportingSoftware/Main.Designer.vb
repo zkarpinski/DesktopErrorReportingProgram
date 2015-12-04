@@ -62,6 +62,7 @@ Partial Class Main
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblOutputMessage = New System.Windows.Forms.ToolStripStatusLabel()
         Me.txtCustomerNumber = New System.Windows.Forms.MaskedTextBox()
+        Me.dtblVendors = New System.Data.DataTable()
         CType(Me.myDerpDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtblCategories, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtblFunctions, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +73,7 @@ Partial Class Main
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.dtblVendors, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lbCategories
@@ -80,14 +82,14 @@ Partial Class Main
         Me.lbCategories.FormattingEnabled = True
         Me.lbCategories.Location = New System.Drawing.Point(11, 44)
         Me.lbCategories.Name = "lbCategories"
-        Me.lbCategories.Size = New System.Drawing.Size(134, 43)
+        Me.lbCategories.Size = New System.Drawing.Size(134, 56)
         Me.lbCategories.Sorted = True
         Me.lbCategories.TabIndex = 1
         '
         'myDerpDataSet
         '
         Me.myDerpDataSet.DataSetName = "myDerpDataSet"
-        Me.myDerpDataSet.Tables.AddRange(New System.Data.DataTable() {Me.dtblCategories, Me.dtblFunctions, Me.dtblDetails, Me.dtblDetailRelations, Me.dtblCompanies})
+        Me.myDerpDataSet.Tables.AddRange(New System.Data.DataTable() {Me.dtblCategories, Me.dtblFunctions, Me.dtblDetails, Me.dtblDetailRelations, Me.dtblCompanies, Me.dtblVendors})
         '
         'dtblCategories
         '
@@ -115,7 +117,7 @@ Partial Class Main
         Me.lbTasks.FormattingEnabled = True
         Me.lbTasks.Location = New System.Drawing.Point(151, 44)
         Me.lbTasks.Name = "lbTasks"
-        Me.lbTasks.Size = New System.Drawing.Size(196, 43)
+        Me.lbTasks.Size = New System.Drawing.Size(196, 56)
         Me.lbTasks.TabIndex = 2
         '
         'btnFillForm
@@ -342,7 +344,7 @@ Partial Class Main
         '
         Me.lblDetails.AutoSize = True
         Me.lblDetails.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDetails.Location = New System.Drawing.Point(13, 91)
+        Me.lblDetails.Location = New System.Drawing.Point(13, 103)
         Me.lblDetails.Name = "lblDetails"
         Me.lblDetails.Size = New System.Drawing.Size(46, 13)
         Me.lblDetails.TabIndex = 21
@@ -360,7 +362,7 @@ Partial Class Main
         Me.dgvDetails.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.USER_CHECKED})
         Me.dgvDetails.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke
         Me.dgvDetails.EnableHeadersVisualStyles = False
-        Me.dgvDetails.Location = New System.Drawing.Point(12, 105)
+        Me.dgvDetails.Location = New System.Drawing.Point(12, 119)
         Me.dgvDetails.MultiSelect = False
         Me.dgvDetails.Name = "dgvDetails"
         Me.dgvDetails.RowHeadersVisible = False
@@ -370,7 +372,7 @@ Partial Class Main
         Me.dgvDetails.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvDetails.ShowEditingIcon = False
         Me.dgvDetails.ShowRowErrors = False
-        Me.dgvDetails.Size = New System.Drawing.Size(335, 104)
+        Me.dgvDetails.Size = New System.Drawing.Size(335, 90)
         Me.dgvDetails.TabIndex = 3
         '
         'USER_CHECKED
@@ -429,6 +431,10 @@ Partial Class Main
         Me.txtCustomerNumber.TabIndex = 7
         Me.txtCustomerNumber.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
+        'dtblVendors
+        '
+        Me.dtblVendors.TableName = "dtblVendors"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -473,6 +479,7 @@ Partial Class Main
         CType(Me.dgvDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.dtblVendors, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -515,4 +522,5 @@ Partial Class Main
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents lblOutputMessage As ToolStripStatusLabel
     Friend WithEvents txtCustomerNumber As MaskedTextBox
+    Friend WithEvents dtblVendors As DataTable
 End Class

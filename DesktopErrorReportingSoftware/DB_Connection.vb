@@ -28,8 +28,8 @@ Module DB_Connection
 
     Public Function Insert_NewRecord(fBack As Feedback, strConn As String) As Boolean
         Dim query As String = "Insert Into Feedback (ACCOUNT_NUMBER, CUSTOMER_NUMBER, REP_PROVIDER, AGENT, AGENT_ID, " &
-        "COMPANY, F_CATEGORY, F_FUNCTION, ERROR_DATE, FEEDBACK_TIMESTAMP) Values (acc, cust, rep, agent, agent_id, " &
-        "comp, cat, func, dErr, dFeed);"
+        "COMPANY, F_CATEGORY, F_FUNCTION, ERROR_DATE, FEEDBACK_TIMESTAMP, COMMENTS) Values (acc, cust, rep, agent, agent_id, " &
+        "comp, cat, func, dErr, dFeed, comm);"
         Dim query2 As String = "Select @@Identity"
         Dim qryInsertDetails As String = "Insert Into ReportedErrors (fID, DETAIL) " &
             "Values (id, det);"
@@ -48,6 +48,7 @@ Module DB_Connection
                     cmd.Parameters.AddWithValue("func", fBack.F_Function)
                     cmd.Parameters.AddWithValue("dErr", CDate(fBack.ErrorDate))
                     cmd.Parameters.AddWithValue("dFeed", fBack.Get_Timestamp)
+                    cmd.Parameters.AddWithValue("comm", fBack.Comments)
 
                     conn.Open()
                     cmd.ExecuteNonQuery()

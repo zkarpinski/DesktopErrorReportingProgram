@@ -58,6 +58,13 @@
         cmbCompany.DisplayMember = "COMPANY_SHORT"
         cmbCompany.ValueMember = "COMPANY_ID"
 
+
+        DB_Connection.Populate_Datatable(myDerpDataSet, "dtblRegions", "Select * FROM tblREGIONS WHERE IS_HIDDEN = 0 Order By COMPANY;", mySettings.GetConnectionString)
+        cmbCompany.DataSource = myDerpDataSet.Tables("dtblCompanies")
+        cmbCompany.DisplayMember = "COMPANY_SHORT"
+        cmbCompany.ValueMember = "COMPANY_ID"
+
+
         DB_Connection.Populate_Datatable(myDerpDataSet, "dtblFunctions", "Select * FROM tblFUNCTIONS WHERE IS_HIDDEN = 0;", mySettings.GetConnectionString)
         DB_Connection.Populate_Datatable(myDerpDataSet, "dtblDetails", "Select * FROM tblDETAILS WHERE IS_HIDDEN = 0;", mySettings.GetConnectionString)
         DB_Connection.Populate_Datatable(myDerpDataSet, "dtblDetailRelations", "Select * FROM tblDetailRelations;", mySettings.GetConnectionString)
@@ -177,9 +184,11 @@
 			
             fback.AccountNumber = Me.txtAccountNumber.Text
             fback.CustomerNumber = Me.txtCustomerNumber.Text
-            fback.Agent = Me.txtAgent.Text
-            fback.Agent_ID = Me.txtAgentID.Text
+            fback.ContactType = ""
+            fback.Agent = (Me.txtAgent.Text).ToUpper
+            fback.Agent_ID = (Me.txtAgentID.Text).ToUpper
             fback.Company = Me.cmbCompany.SelectedValue
+            fback.Comments = Me.txtComments.Text
             fback.ErrorDate = "#" & Me.dtpErrorDate.Value.ToString & "#"
 
             fback.F_Category = Me.lbCategories.SelectedValue
