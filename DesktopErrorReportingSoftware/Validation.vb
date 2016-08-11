@@ -19,9 +19,6 @@
 
         'bIsValid = IIf(bIsValid, ValidateTxtControl(Me.F_FUNCTION), bIsValid)
 
-
-
-
         For Each txt As Object In ctrls
             If Not ValidateTxtControl(txt) Then
                 bIsValid = False
@@ -29,6 +26,43 @@
             End If
         Next
         Return bIsValid
+    End Function
+
+    Public Function ValidateComboboxes(ctrls() As Object)
+        Dim bIsValid As Boolean = True
+
+        On Error Resume Next
+
+        For Each cmbb As Object In ctrls
+            If Not ValidateComboBox(cmbb) Then
+                bIsValid = False
+            End If
+        Next
+        Return bIsValid
+    End Function
+
+    Public Function ValidateComboBox(ctrl As Object) As Boolean
+        Dim isValid As Boolean = True
+
+        'Check if null for all controls.
+        If IsNothing(ctrl) Then
+            isValid = False
+        Else
+            'Check controls, by name, for any specific tests
+            Select Case ctrl.Name
+                Case Else
+                    If Not IsNumeric(ctrl.SelectedValue) Then
+                        isValid = False
+                        ctrl.BackColor = Color.Yellow
+                    ElseIf ctrl.SelectedValue <= 0 Then 'Don't allow the blanks
+                        isValid = False
+                        ctrl.BackColor = Color.Yellow
+                    Else
+                        ctrl.BackCOlor = SystemColors.Window
+                    End If
+            End Select
+        End If
+        Return isValid
     End Function
 
     Public Function ValidateListboxes(ctrls() As Object)
@@ -40,7 +74,6 @@
         For Each lstb As Object In ctrls
             If Not ValidateListControl(lstb) Then
                 bIsValid = False
-                'lastFailCtrl = txt.Name
             End If
         Next
         Return bIsValid

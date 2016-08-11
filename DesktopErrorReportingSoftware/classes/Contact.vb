@@ -5,7 +5,7 @@
 End Enum
 
 'Matches the company table
-Public Enum Companies
+Public Enum Vendors
     COMP_ERR = 0
     COMP_OTHER = 1
     COMP_NationalGrid = 2
@@ -19,7 +19,7 @@ End Enum
 Public Class Contact
     Property Agent As String
     Property AgentID As String
-    Property Company As Companies
+    Property Vendor As Vendors
     Property ContactType As String
     Property DateOccurred As String
     Property PremiseAddress As String
@@ -29,11 +29,11 @@ Public Class Contact
     Property Source As ContactSource
 
     ReadOnly Property OrignalContactString As String
-	
-	'UNUSED
-	 Property CompanyCenter As String
-	Property ContactGUID As String
-	Property ContactTimestamp As String
+
+    'UNUSED
+    Property CompanyCenter As String
+    Property ContactGUID As String
+    Property ContactTimestamp As String
 
 
     Public Sub New(contactStr As String)
@@ -64,10 +64,10 @@ Public Class Contact
 
                 Me.Agent = splits(3)
                 Me.CompanyCenter = splits(4)
-				Me.ContactGUID = splits(5)
-				Me.ContactTimestamp = splits(6)
+                Me.ContactGUID = splits(5)
+                Me.ContactTimestamp = splits(6)
                 Me.AgentID = splits(7)
-                Me.Company = DetermineAgentsCompany(Me.AgentID)
+                Me.Vendor = DetermineAgentsCompany(Me.AgentID)
 
                 If (Me.Source = ContactSource.CS_ACCOUNT) Then
                     'Me.PremiseNumber = AddLeadingZeroes(splits(8), 9)
@@ -81,37 +81,37 @@ Public Class Contact
     End Function
 
 
-    Private Function DetermineAgentsCompany(agentID As String) As Companies
-        Dim company As Companies
+    Private Function DetermineAgentsCompany(agentID As String) As Vendors
+        Dim vendor As Vendors
         If Len(agentID) < 3 Then
-            company = Companies.COMP_ERR
+            vendor = Vendors.COMP_ERR
         Else
 
             Dim prefix As String
             prefix = Left(agentID, 3)
             If Left(agentID, 1) = "E" And IsNumeric(Right(prefix, 2)) Then
                 'E09677
-                company = Companies.COMP_NationalGrid
+                vendor = Vendors.COMP_NationalGrid
             ElseIf Left(agentID, 3) = "LIC" And IsNumeric(Mid(agentID, 4, 5)) Then
                 'LIC000
-                company = Companies.COMP_LICallCenter
-            ElseIf Left(agentID, 3) = "NCI" Then
+                vendor = Vendors.COMP_LICallCenter
+            ElseIf prefix = "NCI" Or prefix = "ICN" Then
                 'NCIL00 or NCIR00
-                company = Companies.COMP_NCI
+                vendor = Vendors.COMP_NCI
             ElseIf prefix = "IQO" Or prefix = "OQI" Then
                 'IQO00 or OQI000
-                company = Companies.COMP_IQOR
+                vendor = Vendors.COMP_IQOR
             ElseIf prefix = "COV" Then
                 'COV099
-                company = Companies.COMP_COV
+                vendor = Vendors.COMP_COV
             ElseIf prefix = "NBR" Then
                 'NBR099
-                company = Companies.COMP_NorthboroCallCenter
+                vendor = Vendors.COMP_NorthboroCallCenter
             Else
-                company = Companies.COMP_OTHER
+                vendor = Vendors.COMP_OTHER
             End If
         End If
-        Return company
+        Return vendor
     End Function
 
     Private Function AddLeadingZeroes(txt As String, length As String) As String

@@ -1,5 +1,4 @@
 ﻿Imports System.Data.OleDb
-Imports System.Data.SqlClient
 
 Module DB_Connection
 
@@ -25,11 +24,35 @@ Module DB_Connection
         ordAdapter = Nothing
     End Sub
 
+    Public Function Insert_PositiveFeedback(pFeedback As Feedback, strConn As String) As Boolean
+        Dim query As String = "Insert Into PositiveFeedback (F_REGION, REP_PROVIDER, F_CATEGORY, F_FUNCTION, FEEDBACK_TIMESTAMP) " &
+        "Values (region, rep, cat, func, dFeed);"
+        Try
+            Using conn As New OleDbConnection(strConn)
+                Using cmd As New OleDbCommand(query, conn)
+                    cmd.Parameters.AddWithValue("region", pFeedback.Region)
+                    cmd.Parameters.AddWithValue("rep", pFeedback.Rep)
+                    cmd.Parameters.AddWithValue("cat", pFeedback.F_Category)
+                    cmd.Parameters.AddWithValue("func", pFeedback.F_Function)
+                    cmd.Parameters.AddWithValue("dFeed", pFeedback.Get_Timestamp)
+
+                    conn.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+            Return True
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        End Try
+
+    End Function
+
 
     Public Function Insert_NewRecord(fBack As Feedback, strConn As String) As Boolean
-        Dim query As String = "Insert Into Feedback (ACCOUNT_NUMBER, CUSTOMER_NUMBER, REP_PROVIDER, AGENT, AGENT_ID, " &
-        "COMPANY, F_CATEGORY, F_FUNCTION, ERROR_DATE, FEEDBACK_TIMESTAMP, COMMENTS) Values (acc, cust, rep, agent, agent_id, " &
-        "comp, cat, func, dErr, dFeed, comm);"
+        Dim query As String = "Insert Into Feedback (ACCOUNT_NUMBER, CUSTOMER_NUMBER, F_REGION, REP_PROVIDER, AGENT, AGENT_ID, " &
+        "Vendor, F_CATEGORY, F_FUNCTION, ERROR_DATE, FEEDBACK_TIMESTAMP, COMMENTS, CONTACT_TYPE) Values (acc, cust, region, rep, agent, agent_id, " &
+        "vend, cat, func, dErr, dFeed, comm, con_type);"
         Dim query2 As String = "Select @@Identity"
         Dim qryInsertDetails As String = "Insert Into ReportedErrors (fID, DETAIL) " &
             "Values (id, det);"
@@ -40,15 +63,18 @@ Module DB_Connection
                 Using cmd As New OleDbCommand(query, conn)
                     cmd.Parameters.AddWithValue("acc", fBack.AccountNumber)
                     cmd.Parameters.AddWithValue("cust", fBack.CustomerNumber)
+                    cmd.Parameters.AddWithValue("region", fBack.Region)
                     cmd.Parameters.AddWithValue("rep", fBack.Rep)
                     cmd.Parameters.AddWithValue("agent", fBack.Agent)
                     cmd.Parameters.AddWithValue("agent_id", fBack.Agent_ID)
-                    cmd.Parameters.AddWithValue("comp", fBack.Company)
+                    cmd.Parameters.AddWithValue("vend", fBack.Vendor)
                     cmd.Parameters.AddWithValue("cat", fBack.F_Category)
                     cmd.Parameters.AddWithValue("func", fBack.F_Function)
-                    cmd.Parameters.AddWithValue("dErr", CDate(fBack.ErrorDate))
+                    'cmd.Parameters.AddWithValue("dErr", fBack.ErrorDate)
+                    cmd.Parameters.AddWithValue("dErr", If(fBack.ErrorDate, DBNull.Value))
                     cmd.Parameters.AddWithValue("dFeed", fBack.Get_Timestamp)
                     cmd.Parameters.AddWithValue("comm", fBack.Comments)
+                    cmd.Parameters.AddWithValue("con_type", If(fBack.ContactType, DBNull.Value))
 
                     conn.Open()
                     cmd.ExecuteNonQuery()

@@ -31,7 +31,6 @@ Partial Class About
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(About))
         Me.TableLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
         Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
         Me.LabelProductName = New System.Windows.Forms.Label()
@@ -142,7 +141,7 @@ Partial Class About
         Me.TextBoxDescription.Size = New System.Drawing.Size(257, 123)
         Me.TextBoxDescription.TabIndex = 0
         Me.TextBoxDescription.TabStop = False
-        Me.TextBoxDescription.Text = resources.GetString("TextBoxDescription.Text")
+        Me.TextBoxDescription.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Created By: Zachary Karpinski 2015" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Zachary.Karpinski@nationalgrid.com" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'OKButton
         '
